@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+}
+
+.filterContainer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+a {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}

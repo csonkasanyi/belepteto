@@ -1,0 +1,25 @@
+<div class="filterContainer">
+    <div class="osztalyContainer">
+        <h3>Szűrés osztály szerint</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Osztály</mat-label>
+            <mat-select matNativeControl>
+                <mat-option *ngFor="let osztaly of osztalyok" [value]="osztaly.value">
+                    {{osztaly.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="teremConatiner">
+        <h3>Szűrés tanterem szerint</h3>
+        <mat-form-field appearance="fill">
+            <mat-label>Terem</mat-label>
+            <mat-select matNativeControl>
+                <mat-option *ngFor="let terem of termek" [value]="terem.value">
+                    {{terem.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<a routerLink="/new" routerLinkActive="active" ariaCurrentWhenActive="page" mat-raised-button color="primary">Új vizsgázó</a>
