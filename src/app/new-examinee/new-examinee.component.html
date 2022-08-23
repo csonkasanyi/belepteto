@@ -1,22 +1,22 @@
-<div class="componentContainer">
-  <h2>Új vizsgázó felvétele</h2>
+<form #addExaminee="ngForm" (ngSubmit)="this.crud.addExaminee(addExaminee.value)">
   <div class="newExamineeContainer">
     <mat-form-field appearance="fill">
       <mat-label>Vizsgázó neve</mat-label>
-      <input matInput [formControl]="nev" required>
+      <input type="text" name="nev" ngModel id="nev" placeholder="Vizsgázó neve" matInput
+        [(ngModel)]="this.actualExaminee.nev" required>
       <mat-error *ngIf="nev.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Osztály</mat-label>
-      <mat-select [formControl]="osztaly" required>
-        <mat-option  *ngFor="let osztaly of osztalyok" [value]="osztaly.value">
+      <mat-select [(ngModel)]="this.actualExaminee.osztaly" name="osztaly" id="osztaly" ngModel required>
+        <mat-option *ngFor="let osztaly of osztalyok" [value]="osztaly.value">
           {{osztaly.viewValue}}</mat-option>
       </mat-select>
       <mat-error *ngIf="osztaly.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Terem</mat-label>
-      <mat-select  [formControl]="terem" required>
+      <mat-select [(ngModel)]="this.actualExaminee.terem" required name="terem" id="terem" ngModel>
         <mat-option *ngFor="let terem of termek" [value]="terem.value">
           {{terem.viewValue}}</mat-option>
       </mat-select>
@@ -24,8 +24,7 @@
     </mat-form-field>
   </div>
   <div class="buttons">
-    <a mat-raised-button color="primary">Mentés</a>
+    <button type="submit" mat-raised-button color="primary">Mentés</button>
     <a routerLink="/" mat-raised-button color="primary">Mégse</a>
   </div>
-
-</div>
+</form>

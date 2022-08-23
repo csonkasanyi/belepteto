@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { Examinee } from '../examinee';
+import { CrudService } from '../crud.service';
 
 interface Osztaly {
   value: string;
@@ -17,17 +19,18 @@ interface Terem {
   styleUrls: ['./new-examinee.component.scss']
 })
 export class NewExamineeComponent implements OnInit {
-
-  constructor() { }
+  crud: CrudService
+  constructor(crud: CrudService) {
+    this.crud = crud;}
 
   ngOnInit(): void {
   }
 
   osztalyok: Array<Osztaly> = [
-    {value: '12a', viewValue: '12.a'},
-    {value: '12b', viewValue: '12.b'},
-    {value: '12c', viewValue: '12.c'},
-    {value: 'else', viewValue: 'Egyéb'},
+    {value: '12.a', viewValue: '12.a'},
+    {value: '12.b', viewValue: '12.b'},
+    {value: '12.c', viewValue: '12.c'},
+    {value: 'Egyéb', viewValue: 'Egyéb'},
   ];
 
   termek: Array<Terem> = [
@@ -42,6 +45,8 @@ export class NewExamineeComponent implements OnInit {
     {value: 205, viewValue: 205},
   ];
 
+  actualExaminee: Examinee = new Examinee;
+
   nev = new FormControl('', [Validators.required]);
   osztaly = new FormControl('', [Validators.required]);
   terem = new FormControl('', [Validators.required]);
@@ -53,5 +58,4 @@ export class NewExamineeComponent implements OnInit {
 
     return this.nev.hasError('text') ? 'Not a valid email' : '';
   }
-
 }

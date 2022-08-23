@@ -22,4 +22,39 @@
         </mat-form-field>
     </div>
 </div>
+<div class="cardContainer">
+
+
+    <mat-card *ngFor="let examinee of this.crud.examinees" (click)="this.crud.changeStateOfExaminee(examinee.megerkezett, examinee.id)">
+        
+        <div *ngIf="examinee.megerkezett else missing">
+                <div class="oneCardArrived">
+                    <mat-card-title>{{examinee.nev}}</mat-card-title>
+                    <mat-card-content>
+                        <p>{{examinee.osztaly}}</p>
+                        <p>{{examinee.terem}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button>Szerkesztés</button>
+                        <button mat-button (click)="this.crud.deleteExaminee(examinee.id)">Törlés</button>
+                    </mat-card-actions>
+                </div>
+          </div>
+          
+          <ng-template #missing>
+            <div class="oneCardMissing">
+                <mat-card-title>{{examinee.nev}}</mat-card-title>
+                <mat-card-content>
+                  <p>{{examinee.osztaly}}</p>
+                  <p>{{examinee.terem}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button>Szerkesztés</button>
+                  <button mat-button (click)="this.crud.deleteExaminee(examinee.id)">Törlés</button>
+                </mat-card-actions>
+            </div>
+          </ng-template>
+
+    </mat-card>
+</div>
 <a routerLink="/new" routerLinkActive="active" ariaCurrentWhenActive="page" mat-raised-button color="primary">Új vizsgázó</a>
